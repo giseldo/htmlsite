@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introdução à Regressão Linear | Regressão Linear em Aprendizagem de Máquina com Python</title>
+  <meta name="description" content="Chapter 2 Introdução à Regressão Linear | Regressão Linear em Aprendizagem de Máquina com Python" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introdução à Regressão Linear | Regressão Linear em Aprendizagem de Máquina com Python" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introdução à Regressão Linear | Regressão Linear em Aprendizagem de Máquina com Python" />
+  
+  
+  
+
+<meta name="author" content="Giseldo Neo" />
+
+
+<meta name="date" content="2024-09-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introdução-à-ia-e-am.html"/>
+<link rel="next" href="regressão-linear-na-estatística-e-na-am.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informações Adicionais</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html"><i class="fa fa-check"></i><b>1</b> Introdução à IA e AM</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html#inteligência-artificial-ia"><i class="fa fa-check"></i><b>1.1</b> Inteligência Artificial (IA)</a></li>
+<li class="chapter" data-level="1.2" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html#aprendizado-de-máquina-am"><i class="fa fa-check"></i><b>1.2</b> Aprendizado de Máquina (AM)</a></li>
+<li class="chapter" data-level="1.3" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html#regressão-linear"><i class="fa fa-check"></i><b>1.3</b> Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html#exemplo-com-conjunto-de-dados-fictício"><i class="fa fa-check"></i>Exemplo com conjunto de dados fictício</a></li>
+<li class="chapter" data-level="" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html#exemplo-com-outro-conjunto-de-dados"><i class="fa fa-check"></i>Exemplo com outro conjunto de dados</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introdução-à-ia-e-am.html"><a href="introdução-à-ia-e-am.html#exercícios"><i class="fa fa-check"></i><b>1.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html"><i class="fa fa-check"></i><b>2</b> Introdução à Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html#definição-de-regressão-linear"><i class="fa fa-check"></i><b>2.1</b> Definição de Regressão Linear</a></li>
+<li class="chapter" data-level="2.2" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html#história-e-evolução-do-conceito"><i class="fa fa-check"></i><b>2.2</b> História e Evolução do Conceito</a></li>
+<li class="chapter" data-level="2.3" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html#importância-na-aprendizagem-de-máquina"><i class="fa fa-check"></i><b>2.3</b> Importância na Aprendizagem de Máquina</a></li>
+<li class="chapter" data-level="2.4" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html#exemplos-de-aplicação-no-mundo-real"><i class="fa fa-check"></i><b>2.4</b> Exemplos de Aplicação no Mundo Real</a></li>
+<li class="chapter" data-level="2.5" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html#vantagens-e-limitações"><i class="fa fa-check"></i><b>2.5</b> Vantagens e Limitações</a></li>
+<li class="chapter" data-level="2.6" data-path="introdução-à-regressão-linear.html"><a href="introdução-à-regressão-linear.html#exercícios-1"><i class="fa fa-check"></i><b>2.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html"><i class="fa fa-check"></i><b>3</b> Regressão Linear na Estatística e na AM</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#conceitos-estatísticos"><i class="fa fa-check"></i><b>3.1</b> Conceitos Estatísticos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#métodos-estatísticos-associados"><i class="fa fa-check"></i><b>3.1.1</b> Métodos Estatísticos Associados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#conceitos-de-am"><i class="fa fa-check"></i><b>3.2</b> Conceitos de AM</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#desafios-e-avanços"><i class="fa fa-check"></i><b>3.2.1</b> Desafios e Avanços</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#cálculo-dos-coeficientes"><i class="fa fa-check"></i><b>3.3</b> Cálculo dos coeficientes</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#mínimos-quadrados-ordinários-mqo"><i class="fa fa-check"></i><b>3.3.1</b> Mínimos Quadrados Ordinários (MQO)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#gradiente-descendente"><i class="fa fa-check"></i><b>3.3.2</b> Gradiente Descendente</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#resumo"><i class="fa fa-check"></i>Resumo</a></li>
+<li class="chapter" data-level="3.4" data-path="regressão-linear-na-estatística-e-na-am.html"><a href="regressão-linear-na-estatística-e-na-am.html#exercícios-2"><i class="fa fa-check"></i><b>3.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fundamentos-matemáticos.html"><a href="fundamentos-matemáticos.html"><i class="fa fa-check"></i><b>4</b> Fundamentos Matemáticos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="fundamentos-matemáticos.html"><a href="fundamentos-matemáticos.html#conceito-de-variáveis-independentes-e-dependentes"><i class="fa fa-check"></i><b>4.1</b> Conceito de Variáveis Independentes e Dependentes</a></li>
+<li class="chapter" data-level="4.2" data-path="fundamentos-matemáticos.html"><a href="fundamentos-matemáticos.html#função-linear-e-equação-de-reta"><i class="fa fa-check"></i><b>4.2</b> Função Linear e Equação de Reta</a></li>
+<li class="chapter" data-level="4.3" data-path="fundamentos-matemáticos.html"><a href="fundamentos-matemáticos.html#o-método-dos-mínimos-quadrados"><i class="fa fa-check"></i><b>4.3</b> O Método dos Mínimos Quadrados</a></li>
+<li class="chapter" data-level="4.4" data-path="fundamentos-matemáticos.html"><a href="fundamentos-matemáticos.html#coeficientes-de-regressão-e-interpretação"><i class="fa fa-check"></i><b>4.4</b> Coeficientes de Regressão e Interpretação</a></li>
+<li class="chapter" data-level="4.5" data-path="fundamentos-matemáticos.html"><a href="fundamentos-matemáticos.html#exercícios-3"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html"><i class="fa fa-check"></i><b>5</b> Tipos de Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#regressão-linear-simples"><i class="fa fa-check"></i><b>5.1</b> Regressão Linear Simples</a>
+<ul>
+<li class="chapter" data-level="" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#exemplo-prático"><i class="fa fa-check"></i>Exemplo Prático</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.2</b> Regressão Linear Múltipla</a>
+<ul>
+<li class="chapter" data-level="" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#exemplo-prático-1"><i class="fa fa-check"></i>Exemplo Prático</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#comparação-entre-regressão-simples-e-múltipla"><i class="fa fa-check"></i><b>5.3</b> Comparação entre Regressão Simples e Múltipla</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#quando-usar-regressão-linear-simples"><i class="fa fa-check"></i><b>5.3.1</b> Quando Usar Regressão Linear Simples</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#quando-usar-regressão-linear-múltipla"><i class="fa fa-check"></i><b>5.3.2</b> Quando Usar Regressão Linear Múltipla</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#considerações-práticas"><i class="fa fa-check"></i><b>5.3.3</b> Considerações Práticas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tipos-de-regressão-linear.html"><a href="tipos-de-regressão-linear.html#exercícios-4"><i class="fa fa-check"></i><b>5.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html"><i class="fa fa-check"></i><b>6</b> Assunções da Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#linearidade"><i class="fa fa-check"></i><b>6.1</b> Linearidade</a>
+<ul>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#verificação-de-linearidade"><i class="fa fa-check"></i>Verificação de Linearidade</a></li>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#impacto-da-violação"><i class="fa fa-check"></i>Impacto da Violação</a></li>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#exemplo"><i class="fa fa-check"></i>Exemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#independência"><i class="fa fa-check"></i><b>6.2</b> Independência</a>
+<ul>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#verificação-de-independência"><i class="fa fa-check"></i>Verificação de Independência</a></li>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#impacto-da-violação-1"><i class="fa fa-check"></i>Impacto da Violação</a></li>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#exemplo-1"><i class="fa fa-check"></i>Exemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#homocedasticidade"><i class="fa fa-check"></i><b>6.3</b> Homocedasticidade</a>
+<ul>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#verificação-de-homocedasticidade"><i class="fa fa-check"></i>Verificação de Homocedasticidade</a></li>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#impacto-da-violação-2"><i class="fa fa-check"></i>Impacto da Violação</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#normalidade"><i class="fa fa-check"></i><b>6.4</b> Normalidade</a>
+<ul>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#verificação-de-normalidade"><i class="fa fa-check"></i>Verificação de Normalidade</a></li>
+<li class="chapter" data-level="" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#impacto-da-violação-3"><i class="fa fa-check"></i>Impacto da Violação</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#multicolinearidade"><i class="fa fa-check"></i><b>6.5</b> Multicolinearidade</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#verificação-de-multicolinearidade"><i class="fa fa-check"></i><b>6.5.1</b> Verificação de Multicolinearidade</a></li>
+<li class="chapter" data-level="6.5.2" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#impacto-da-violação-4"><i class="fa fa-check"></i><b>6.5.2</b> Impacto da Violação</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="assunções-da-regressão-linear.html"><a href="assunções-da-regressão-linear.html#exercícios-5"><i class="fa fa-check"></i><b>6.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html"><i class="fa fa-check"></i><b>7</b> Métricas de Avaliação</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#coeficiente-de-determinação-r2"><i class="fa fa-check"></i><b>7.1</b> Coeficiente de Determinação R2</a>
+<ul>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#cálculo"><i class="fa fa-check"></i>Cálculo</a></li>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#interpretação"><i class="fa fa-check"></i>Interpretação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#erro-quadrático-médio-mse"><i class="fa fa-check"></i><b>7.2</b> Erro Quadrático Médio (MSE)</a>
+<ul>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#cálculo-1"><i class="fa fa-check"></i>Cálculo</a></li>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#interpretação-1"><i class="fa fa-check"></i>Interpretação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#raiz-do-erro-quadrático-médio-rmse"><i class="fa fa-check"></i><b>7.3</b> Raiz do Erro Quadrático Médio (RMSE)</a>
+<ul>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#cálculo-2"><i class="fa fa-check"></i>Cálculo</a></li>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#interpretação-2"><i class="fa fa-check"></i>Interpretação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#erro-absoluto-médio-mae"><i class="fa fa-check"></i><b>7.4</b> Erro Absoluto Médio (MAE)</a>
+<ul>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#cálculo-3"><i class="fa fa-check"></i>Cálculo</a></li>
+<li class="chapter" data-level="" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#interpretação-3"><i class="fa fa-check"></i>Interpretação</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#escolha-de-métrica"><i class="fa fa-check"></i><b>7.5</b> Escolha de Métrica</a></li>
+<li class="chapter" data-level="7.6" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#comparação-de-modelos"><i class="fa fa-check"></i><b>7.6</b> Comparação de Modelos</a></li>
+<li class="chapter" data-level="7.7" data-path="métricas-de-avaliação.html"><a href="métricas-de-avaliação.html#exercícios-6"><i class="fa fa-check"></i><b>7.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="implementação-prática.html"><a href="implementação-prática.html"><i class="fa fa-check"></i><b>8</b> Implementação Prática</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="implementação-prática.html"><a href="implementação-prática.html#preparação-dos-dados"><i class="fa fa-check"></i><b>8.1</b> Preparação dos Dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="implementação-prática.html"><a href="implementação-prática.html#passos-na-preparação-dos-dados"><i class="fa fa-check"></i>Passos na Preparação dos Dados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="implementação-prática.html"><a href="implementação-prática.html#implementação-em-python-usando-numpy"><i class="fa fa-check"></i><b>8.2</b> Implementação em Python usando NumPy</a>
+<ul>
+<li class="chapter" data-level="" data-path="implementação-prática.html"><a href="implementação-prática.html#passos-para-implementação"><i class="fa fa-check"></i>Passos para Implementação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="implementação-prática.html"><a href="implementação-prática.html#implementação-em-python-usando-scikit-learn"><i class="fa fa-check"></i><b>8.3</b> Implementação em Python usando Scikit-learn</a>
+<ul>
+<li class="chapter" data-level="" data-path="implementação-prática.html"><a href="implementação-prática.html#passos-para-implementação-1"><i class="fa fa-check"></i>Passos para Implementação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="implementação-prática.html"><a href="implementação-prática.html#exercícios-7"><i class="fa fa-check"></i><b>8.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html"><i class="fa fa-check"></i><b>9</b> Diagnóstico de Modelos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#resíduos-e-suas-análises"><i class="fa fa-check"></i><b>9.1</b> Resíduos e suas Análises</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#tipos-de-análise-de-resíduos"><i class="fa fa-check"></i><b>9.1.1</b> Tipos de Análise de Resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#detecção-de-outliers"><i class="fa fa-check"></i><b>9.2</b> Detecção de Outliers</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#métodos-para-detectar-outliers"><i class="fa fa-check"></i><b>9.2.1</b> Métodos para Detectar Outliers</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#teste-de-significância-para-coeficientes"><i class="fa fa-check"></i><b>9.3</b> Teste de Significância para Coeficientes</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#teste-t-para-coeficientes"><i class="fa fa-check"></i><b>9.3.1</b> Teste t para Coeficientes</a></li>
+<li class="chapter" data-level="9.3.2" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#intervalos-de-confiança"><i class="fa fa-check"></i><b>9.3.2</b> Intervalos de Confiança</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="diagnóstico-de-modelos.html"><a href="diagnóstico-de-modelos.html#exercícios-8"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html"><i class="fa fa-check"></i><b>10</b> Melhorando o Modelo</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#feature-engineering"><i class="fa fa-check"></i><b>10.1</b> Feature Engineering</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#técnicas-comuns-de-feature-engineering"><i class="fa fa-check"></i><b>10.1.1</b> Técnicas Comuns de Feature Engineering</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#regularização-lasso-e-ridge"><i class="fa fa-check"></i><b>10.2</b> Regularização (Lasso e Ridge)</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#tipos-de-regularização"><i class="fa fa-check"></i><b>10.2.1</b> Tipos de Regularização</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#seleção-de-variáveis"><i class="fa fa-check"></i><b>10.3</b> Seleção de Variáveis</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#métodos-de-seleção-de-variáveis"><i class="fa fa-check"></i><b>10.3.1</b> Métodos de Seleção de Variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="melhorando-o-modelo.html"><a href="melhorando-o-modelo.html#exercícios-9"><i class="fa fa-check"></i><b>10.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html"><i class="fa fa-check"></i><b>11</b> Aplicações Avançadas</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#regressão-polinomial"><i class="fa fa-check"></i><b>11.1</b> Regressão Polinomial</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#definição-e-uso"><i class="fa fa-check"></i><b>11.1.1</b> Definição e Uso</a></li>
+<li class="chapter" data-level="11.1.2" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#implementação-em-python"><i class="fa fa-check"></i><b>11.1.2</b> Implementação em Python</a></li>
+<li class="chapter" data-level="11.1.3" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#visualização"><i class="fa fa-check"></i><b>11.1.3</b> Visualização</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#comparação-entre-regressão-linear-e-logística"><i class="fa fa-check"></i><b>11.2</b> Comparação entre Regressão Linear e Logística</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#diferenças-principais"><i class="fa fa-check"></i><b>11.2.1</b> Diferenças Principais</a></li>
+<li class="chapter" data-level="11.2.2" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#implementação-de-regressão-logística-em-python"><i class="fa fa-check"></i><b>11.2.2</b> Implementação de Regressão Logística em Python</a></li>
+<li class="chapter" data-level="11.2.3" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#visualização-1"><i class="fa fa-check"></i><b>11.2.3</b> Visualização</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#uso-em-séries-temporais"><i class="fa fa-check"></i><b>11.3</b> Uso em Séries Temporais</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#técnicas-comuns"><i class="fa fa-check"></i><b>11.3.1</b> Técnicas Comuns</a></li>
+<li class="chapter" data-level="11.3.2" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#implementação-de-regressão-linear-em-séries-temporais"><i class="fa fa-check"></i><b>11.3.2</b> Implementação de Regressão Linear em Séries Temporais</a></li>
+<li class="chapter" data-level="11.3.3" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#considerações-práticas-1"><i class="fa fa-check"></i><b>11.3.3</b> Considerações Práticas</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="aplicações-avançadas.html"><a href="aplicações-avançadas.html#exercícios-10"><i class="fa fa-check"></i><b>11.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html"><i class="fa fa-check"></i><b>12</b> Estudos de Caso</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#previsão-de-preços-de-imóveis"><i class="fa fa-check"></i><b>12.1</b> Previsão de Preços de Imóveis</a>
+<ul>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#descrição-do-problema"><i class="fa fa-check"></i>Descrição do Problema</a></li>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#implementação-em-python-1"><i class="fa fa-check"></i>Implementação em Python</a></li>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#resultados"><i class="fa fa-check"></i>Resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#análise-de-tendências-de-mercado"><i class="fa fa-check"></i><b>12.2</b> Análise de Tendências de Mercado</a>
+<ul>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#descrição-do-problema-1"><i class="fa fa-check"></i>Descrição do Problema</a></li>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#implementação-em-python-2"><i class="fa fa-check"></i>Implementação em Python</a></li>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#resultados-1"><i class="fa fa-check"></i>Resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#previsão-de-vendas"><i class="fa fa-check"></i><b>12.3</b> Previsão de Vendas</a>
+<ul>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#descrição-do-problema-2"><i class="fa fa-check"></i>Descrição do Problema</a></li>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#implementação-em-python-3"><i class="fa fa-check"></i>Implementação em Python</a></li>
+<li class="chapter" data-level="" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#resultados-2"><i class="fa fa-check"></i>Resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="estudos-de-caso.html"><a href="estudos-de-caso.html#exercícios-11"><i class="fa fa-check"></i><b>12.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html"><i class="fa fa-check"></i><b>13</b> Ferramentas e Bibliotecas</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#pandas-para-manipulação-de-dados"><i class="fa fa-check"></i><b>13.1</b> Pandas para Manipulação de Dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#exemplo-de-uso"><i class="fa fa-check"></i>Exemplo de Uso</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#numpy-para-computação-numérica"><i class="fa fa-check"></i><b>13.2</b> NumPy para Computação Numérica</a>
+<ul>
+<li class="chapter" data-level="" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#exemplo-de-uso-1"><i class="fa fa-check"></i>Exemplo de Uso</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#scikit-learn-para-modelagem-de-regressão-linear"><i class="fa fa-check"></i><b>13.3</b> Scikit-learn para Modelagem de Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#exemplo-de-uso-2"><i class="fa fa-check"></i>Exemplo de Uso</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#statsmodels-para-análise-estatística-detalhada"><i class="fa fa-check"></i><b>13.4</b> Statsmodels para Análise Estatística Detalhada</a>
+<ul>
+<li class="chapter" data-level="" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#exemplo-de-uso-3"><i class="fa fa-check"></i>Exemplo de Uso</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#jupyter-notebook-para-análise-interativa"><i class="fa fa-check"></i><b>13.5</b> Jupyter Notebook para Análise Interativa</a>
+<ul>
+<li class="chapter" data-level="" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#exemplo-de-uso-4"><i class="fa fa-check"></i>Exemplo de Uso</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="ferramentas-e-bibliotecas.html"><a href="ferramentas-e-bibliotecas.html#exercícios-12"><i class="fa fa-check"></i><b>13.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html"><i class="fa fa-check"></i><b>14</b> Conclusão e Futuras Perspectivas</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#sumário-dos-conceitos-principais"><i class="fa fa-check"></i><b>14.1</b> Sumário dos Conceitos Principais</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#regressão-linear-1"><i class="fa fa-check"></i><b>14.1.1</b> Regressão Linear</a></li>
+<li class="chapter" data-level="14.1.2" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#ferramentas-e-técnicas"><i class="fa fa-check"></i><b>14.1.2</b> Ferramentas e Técnicas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#desafios-atuais"><i class="fa fa-check"></i><b>14.2</b> Desafios Atuais</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#limitações"><i class="fa fa-check"></i><b>14.2.1</b> Limitações</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#futuras-perspectivas"><i class="fa fa-check"></i><b>14.3</b> Futuras Perspectivas</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#integração-com-aprendizado-profundo"><i class="fa fa-check"></i><b>14.3.1</b> Integração com Aprendizado Profundo</a></li>
+<li class="chapter" data-level="14.3.2" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#explicabilidade-e-interpretabilidade"><i class="fa fa-check"></i><b>14.3.2</b> Explicabilidade e Interpretabilidade</a></li>
+<li class="chapter" data-level="14.3.3" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#computação-em-nuvem-e-big-data"><i class="fa fa-check"></i><b>14.3.3</b> Computação em Nuvem e Big Data</a></li>
+<li class="chapter" data-level="14.3.4" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#híbridos-de-regressão"><i class="fa fa-check"></i><b>14.3.4</b> Híbridos de Regressão</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="conclusão-e-futuras-perspectivas.html"><a href="conclusão-e-futuras-perspectivas.html#considerações-finais"><i class="fa fa-check"></i><b>14.4</b> Considerações Finais</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="gabarito-dos-exercícios.html"><a href="gabarito-dos-exercícios.html"><i class="fa fa-check"></i><b>15</b> Gabarito dos exercícios</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
+<li class="chapter" data-level="16" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>16</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>16.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Regressão Linear em Aprendizagem de Máquina com Python</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introdução-à-regressão-linear" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introdução à Regressão Linear<a href="introdução-à-regressão-linear.html#introdução-à-regressão-linear" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="definição-de-regressão-linear" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Definição de Regressão Linear<a href="introdução-à-regressão-linear.html#definição-de-regressão-linear" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A regressão linear/múltipla/Logística é uma técnica estatística
+utilizada para modelar a relação entre uma variável dependente contínua
+e uma ou mais variáveis independentes, se for somente uma variável
+independente é chamado de regressão linear, com mais de uma variável
+independente será chamado de regressão múltipla. O objetivo principal é
+encontrar a melhor linha reta que descreve a relação entre as variáveis,
+minimizando a soma dos quadrados das diferenças entre os valores
+observados e os valores previstos. Geralmente ela é utilizada na
+previsão de uma variável dependente qualitativa (também chamada de
+categórica).</p>
+<p>Matematicamente, a equação da regressão linear pode ser expressa como:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_nx_n + \epsilon\]</span></p>
+<p>onde:</p>
+<ul>
+<li><p><span class="math inline">\(y\)</span> é a variável dependente,</p></li>
+<li><p><span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> são as variáveis independentes,</p></li>
+<li><p><span class="math inline">\(\beta_0\)</span> é o intercepto,</p></li>
+<li><p><span class="math inline">\(\beta_1, \beta_2, \ldots, \beta_n\)</span> são os coeficientes das
+variáveis independentes,</p></li>
+<li><p><span class="math inline">\(\epsilon\)</span> é o termo de erro.</p></li>
+</ul>
+</div>
+<div id="história-e-evolução-do-conceito" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> História e Evolução do Conceito<a href="introdução-à-regressão-linear.html#história-e-evolução-do-conceito" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O conceito de regressão linear começou com Sir Francis Galton, que
+introduziu o termo “regressão” em um estudo sobre a hereditariedade da
+altura em 1877. Ele observou que a altura dos filhos tendia a regredir
+em direção à média da altura dos pais, um fenômeno que ele chamou de
+“regressão para a média” <span class="citation">(<a href="#ref-Galton1877">Galton 1877</a>)</span>.</p>
+<p>Posteriormente, Karl Pearson, um pioneiro da estatística moderna,
+expandiu o trabalho de Galton e formalizou o método de regressão linear.
+Em 1896, Pearson introduziu a técnica de mínimos quadrados para estimar
+os coeficientes de regressão, que se tornou a base para o método de
+regressão linear <span class="citation">(<a href="#ref-Pearson1896">Pearson 1896</a>)</span>.</p>
+<p>Além disso, Ronald A. Fisher, um dos fundadores da estatística moderna,
+contribuiu significativamente para a regressão linear durante as décadas
+de 1920 e 1930. Ele desenvolveu a análise de variância (ANOVA), que
+ajudou a estender a regressão linear para incluir múltiplas variáveis
+independentes <span class="citation">(<a href="#ref-Fisher1925">Fisher 1925</a>)</span>. Fisher também introduziu o conceito de
+máxima verossimilhança, que aprimorou os métodos de estimação de
+parâmetros.</p>
+<p>Com o avanço dos computadores e das técnicas de computação nos anos 1960
+e 1970, a regressão linear tornou-se uma ferramenta essencial em
+econometria, biologia e ciências sociais. Hoje, a regressão linear é
+amplamente utilizada em aprendizagem de máquina como um ponto de partida
+para o desenvolvimento de modelos preditivos.</p>
+<p>A introdução de métodos computacionais avançados e o surgimento de
+software estatístico, como R e Python, tornaram a aplicação da regressão
+linear mais acessível e poderosa. Isso permitiu o processamento de
+grandes volumes de dados e a aplicação de regressão linear em uma ampla
+gama de disciplinas científicas e industriais
+<span class="citation">(<a href="#ref-Chambers1992">Chambers 1992</a>; <a href="#ref-McKinney2010">McKinney 2010</a>)</span>. Veja na
+Figura <a href="introdução-à-regressão-linear.html#fig:linhadotempo" reference-type="ref" reference="fig:linhadotempo">2.1</a> uma linha do tempo dessa evolução.</p>
+<p><img src="figuras/linhadotempo.png" id="fig:linhadotempo" style="width:100.0%" /></p>
+<div class="tcolorbox">
+<p>O Python foi criado por Guido van Rossum e lançado pela primeira vez em
+1991. Van Rossum começou a desenvolver Python no final dos anos 1980
+como um sucessor de uma linguagem chamada ABC. A ideia era criar uma
+linguagem de programação que fosse fácil de entender e de usar, com uma
+sintaxe clara e legível. O nome "Python" foi escolhido como uma
+referência ao grupo de comédia britânico Monty Python, do qual Van
+Rossum era fã. Desde o seu lançamento, Python tem evoluído
+significativamente, com várias versões lançadas ao longo dos anos,
+incluindo as séries Python 2.x e Python 3.x, sendo esta última a mais
+atual e recomendada para novos projetos.</p>
+</div>
+<div class="tcolorbox">
+<p>A linguagem de programação R surgiu em meados da década de 1990. Ela foi
+criada por Ross Ihaka e Robert Gentleman, dois estatísticos da
+Universidade de Auckland, na Nova Zelândia. O desenvolvimento inicial do
+R começou em 1992, e a primeira versão pública foi lançada em 1995. R
+foi projetada como uma linguagem para estatística e análise de dados,
+fortemente influenciada pela linguagem S, que foi desenvolvida
+anteriormente nos laboratórios da Bell. Uma das principais vantagens do
+R é a sua capacidade de fornecer uma ampla gama de ferramentas
+estatísticas e gráficas, tornando-o popular entre estatísticos,
+cientistas de dados e pesquisadores em várias disciplinas. Desde o seu
+lançamento, R tem se expandido com contribuições de uma comunidade
+ativa, levando ao desenvolvimento de inúmeros pacotes que ampliam suas
+capacidades.</p>
+</div>
+</div>
+<div id="importância-na-aprendizagem-de-máquina" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Importância na Aprendizagem de Máquina<a href="introdução-à-regressão-linear.html#importância-na-aprendizagem-de-máquina" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A regressão linear (usaremos somente o termo regressão linear, ou
+somente regressão, mas o mesmo se aplica a regressão múltipla) é muitas
+vezes utilizada como um ponto de partida para o entendimento de métodos
+mais complexos. Sua simplicidade e intuição tornam-na acessível para
+iniciantes, proporcionando uma maneira clara de compreender a relação
+linear entre variáveis independentes e dependentes
+<span class="citation">(<a href="#ref-mohri2018foundations">Mohri, Rostamizadeh, and Talwalkar 2018</a>)</span>. Essa compreensão básica é fundamental para o
+desenvolvimento de modelos mais avançados. Ela também é usada não apenas
+para prever resultados, mas também para compreender as relações
+subjacentes entre variáveis <span class="citation">(<a href="#ref-hastie2009">Hastie, Tibshirani, and Friedman 2009</a>; <a href="#ref-james2013">James et al. 2013</a>)</span>.</p>
+<p>Além disso, a regressão linear serve como base para modelos mais
+sofisticados, como redes neurais e regressão logística. Compreender seus
+fundamentos ajuda a entender e implementar essas técnicas mais complexas
+<span class="citation">(<a href="#ref-bishop2006">Bishop 2006</a>)</span>. Outra vantagem significativa da regressão linear é a
+capacidade de interpretar os coeficientes do modelo, oferecendo
+<em>insights</em> diretos sobre a influência de cada variável independente na
+variável dependente. Isso é crucial em muitas aplicações práticas, onde
+a explicabilidade do modelo é tão importante quanto a precisão
+<span class="citation">(<a href="#ref-hastie2009">Hastie, Tibshirani, and Friedman 2009</a>)</span>.</p>
+<p>A eficiência computacional da regressão linear permite seu uso em
+conjuntos de dados grandes e complexos. Ela serve como uma linha de base
+eficaz para a comparação com outros modelos mais sofisticados
+<span class="citation">(<a href="#ref-friedman2001elements">Friedman, Hastie, and Tibshirani 2001</a>)</span>. Por último, o estudo da regressão linear ajuda
+os profissionais a entender as suposições estatísticas subjacentes e as
+implicações de suas violações, uma habilidade essencial na modelagem de
+dados <span class="citation">(<a href="#ref-montgomery2021">Montgomery, Peck, and Vining 2021</a>)</span>.</p>
+</div>
+<div id="exemplos-de-aplicação-no-mundo-real" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Exemplos de Aplicação no Mundo Real<a href="introdução-à-regressão-linear.html#exemplos-de-aplicação-no-mundo-real" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A regressão linear é uma ferramenta estatística amplamente utilizada em
+diversas áreas devido à sua simplicidade e eficácia na modelagem de
+relações entre variáveis. Um dos exemplos mais comuns de aplicação da
+regressão linear é na previsão de preços de imóveis. Neste contexto, a
+regressão linear é usada para estimar o preço de uma propriedade com
+base em características como localização, tamanho, e número de quartos.
+Esta abordagem permite que compradores e vendedores tenham uma melhor
+compreensão do valor de mercado de uma casa, considerando fatores
+relevantes que influenciam o preço. Uma das aplicabilidades da regressão
+na análise de mercado imobiliário é avaliação do preço de propriedades.</p>
+<p>Outro exemplo é a análise de vendas em empresas. As organizações
+utilizam a regressão linear para prever vendas futuras com base em dados
+históricos. Essa previsão é utilizada na tomada de decisões
+estratégicas, como planejamento de estoque e campanhas de marketing. A
+capacidade de antecipar mudanças na demanda permite que as empresas se
+adaptem rapidamente ao mercado, melhorando sua eficiência operacional e
+maximizando lucros.</p>
+<p>Na área das ciências da saúde, a regressão linear desempenha um papel na
+análise de dados clínicos. Pesquisadores utilizam essa técnica para
+explorar a relação entre variáveis como idade, pressão arterial e níveis
+de colesterol, para identificar fatores de risco para doenças. Este tipo
+de análise ajuda a estabelecer correlações essenciais para o
+desenvolvimento de estratégias de prevenção e tratamento.</p>
+<p>Em engenharia, a regressão linear é aplicada no controle de qualidade
+para prever a resistência de materiais com base em suas propriedades
+físicas e químicas. Essa aplicação visa garantir a segurança e eficácia
+dos materiais utilizados em construção e manufatura. Ao identificar as
+propriedades que afetam a resistência, engenheiros podem otimizar
+processos de produção e desenvolver materiais mais robustos.</p>
+<div class="tcolorbox">
+<ul>
+<li><p><strong>Previsão de Preços de Imóveis:</strong> A regressão linear pode ser usada
+para prever o preço de uma casa com base em características como
+localização, tamanho, e número de quartos.</p></li>
+<li><p><strong>Análise de Vendas:</strong> Empresas utilizam regressão linear para
+prever vendas futuras com base em dados históricos, ajudando na
+tomada de decisões estratégicas.</p></li>
+<li><p><strong>Ciências da Saúde:</strong> Pesquisadores utilizam regressão linear para
+analisar a relação entre variáveis como idade, pressão arterial e
+colesterol, ajudando a identificar fatores de risco para doenças.</p></li>
+<li><p><strong>Engenharia:</strong> No controle de qualidade, a regressão linear pode
+ajudar a prever a resistência de materiais com base em suas
+propriedades físicas e químicas.</p></li>
+</ul>
+</div>
+</div>
+<div id="vantagens-e-limitações" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Vantagens e Limitações<a href="introdução-à-regressão-linear.html#vantagens-e-limitações" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uma das principais vantagens da regressão linear é sua simplicidade e
+facilidade de interpretação. É uma técnica fácil de implementar, o que
+permite que até mesmo usuários sem formação avançada em estatística
+compreendam rapidamente as relações entre variáveis. Esta característica
+torna a regressão linear uma ferramenta acessível e amplamente utilizada
+em diversas áreas do conhecimento.</p>
+<p>Além disso, a regressão linear é computacionalmente eficiente, pois
+requer menos recursos em comparação com modelos mais complexos. Essa
+eficiência a torna ideal para análise de grandes conjuntos de dados,
+onde a velocidade e a economia de recursos são críticas.</p>
+<p>Por último, a regressão linear serve como base para modelos mais
+complexos de Machine Learning. Ela oferece uma compreensão inicial dos
+dados, permitindo que pesquisadores e analistas desenvolvam modelos mais
+sofisticados, como regressão polinomial e redes neurais, a partir desse
+fundamento. Essa característica faz da regressão linear uma etapa
+inicial crucial no processo de modelagem e análise de dados.</p>
+<p>No entanto, é importante reconhecer as limitações da regressão linear.
+Ela assume uma relação linear entre as variáveis, o que nem sempre
+reflete a complexidade das interações no mundo real. Além disso, a
+presença de <em>outliers</em> pode distorcer os resultados, tornando a
+modelagem menos precisa. Por isso, é essencial que os analistas
+considerem essas limitações ao utilizar a regressão linear em suas
+pesquisas e práticas profissionais.</p>
+<div class="tcolorbox">
+<p><strong>Vantagens</strong></p>
+<ul>
+<li><p><strong>Simplicidade e Interpretação:</strong> Fácil de implementar e
+interpretar, permitindo que usuários compreendam rapidamente as
+relações entre variáveis.</p></li>
+<li><p><strong>Eficiência Computacional:</strong> Requer menos recursos computacionais
+em comparação com modelos mais complexos.</p></li>
+<li><p><strong>Base para Modelos Complexos:</strong> Serve como base para entender e
+desenvolver modelos de Machine Learning mais avançados.</p></li>
+</ul>
+<p><strong>Limitações</strong></p>
+<ul>
+<li><p><strong>Linearidade:</strong> Assume que a relação entre variáveis é linear, o
+que pode não ser verdade para todos os conjuntos de dados.</p></li>
+<li><p><strong>Sensibilidade a Outliers:</strong> Outliers podem influenciar
+significativamente os resultados da regressão linear.</p></li>
+<li><p><strong>Assunção de Independência:</strong> Pressupõe que as variáveis
+independentes são realmente independentes umas das outras, o que
+pode não ser o caso.</p></li>
+</ul>
+</div>
+</div>
+<div id="exercícios-1" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Exercícios<a href="introdução-à-regressão-linear.html#exercícios-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Versão on-line destes exercícios</p>
+<p><a href="https://forms.gle/pkbW5KuHRrwKXKf59" class="uri">https://forms.gle/pkbW5KuHRrwKXKf59</a></p>
+<ol style="list-style-type: decimal">
+<li><p>O que é Regressão Linear?</p>
+<ol style="list-style-type: decimal">
+<li><p>Uma técnica para classificar dados em categorias pré-definidas.</p></li>
+<li><p>Um método estatístico para modelar a relação entre uma variável
+dependente contínua e uma ou mais variáveis independentes.</p></li>
+<li><p>Um algoritmo de Machine Learning não supervisionado utilizado
+para clustering.</p></li>
+<li><p>Uma técnica para prever séries temporais baseada em modelos de
+decomposição.</p></li>
+</ol></li>
+<li><p>Qual é a principal função da Regressão Linear Simples?</p>
+<ol style="list-style-type: decimal">
+<li><p>Prever valores categóricos a partir de variáveis independentes.</p></li>
+<li><p>Encontrar a linha reta que minimiza a soma dos quadrados das
+diferenças entre os valores observados e previstos.</p></li>
+<li><p>Estimar a matriz de covariância entre variáveis dependentes.</p></li>
+<li><p>Aplicar transformações não lineares para capturar complexidades
+nos dados.</p></li>
+</ol></li>
+<li><p>Quem foi um dos pioneiros no desenvolvimento do conceito de
+regressão linear?</p>
+<ol style="list-style-type: decimal">
+<li><p>Albert Einstein</p></li>
+<li><p>Francis Galton</p></li>
+<li><p>Isaac Newton</p></li>
+<li><p>Ada Lovelace</p></li>
+</ol></li>
+<li><p>Qual das seguintes opções NÃO é uma aplicação típica de regressão
+linear?</p>
+<ol style="list-style-type: decimal">
+<li><p>Previsão de preços de imóveis.</p></li>
+<li><p>Análise de tendências de mercado.</p></li>
+<li><p>Detecção de anomalias em grandes conjuntos de dados.</p></li>
+<li><p>Previsão de vendas.</p></li>
+</ol></li>
+<li><p>Qual é uma vantagem da Regressão Linear?</p>
+<ol style="list-style-type: decimal">
+<li><p>Ela é capaz de modelar relações complexas e não lineares sem
+ajustes adicionais.</p></li>
+<li><p>É fácil de interpretar e implementar, exigindo menos recursos
+computacionais em comparação com modelos mais complexos.</p></li>
+<li><p>Funciona exclusivamente com variáveis categóricas e não
+contínuas.</p></li>
+<li><p>Sempre fornece resultados perfeitos independentemente dos dados.</p></li>
+</ol></li>
+</ol>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-bishop2006" class="csl-entry">
+Bishop, C. M. 2006. <em>Pattern Recognition and Machine Learning</em>. Springer.
+</div>
+<div id="ref-Chambers1992" class="csl-entry">
+Chambers, J. M. 1992. <em>Statistical Models in s</em>. Chapman; Hall/CRC.
+</div>
+<div id="ref-Fisher1925" class="csl-entry">
+Fisher, R. A. 1925. <em>Statistical Methods for Research Workers</em>. Oliver; Boyd.
+</div>
+<div id="ref-friedman2001elements" class="csl-entry">
+Friedman, J., T. Hastie, and R. Tibshirani. 2001. <em>The Elements of Statistical Learning</em>. Springer.
+</div>
+<div id="ref-Galton1877" class="csl-entry">
+Galton, F. 1877. <span>“Regression Towards Mediocrity in Hereditary Stature.”</span> <em>Journal of the Anthropological Institute</em> 15: 246–63.
+</div>
+<div id="ref-hastie2009" class="csl-entry">
+Hastie, T., R. Tibshirani, and J. Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. 2nd ed. Springer.
+</div>
+<div id="ref-james2013" class="csl-entry">
+James, G., D. Witten, T. Hastie, and R. Tibshirani. 2013. <em>An Introduction to Statistical Learning: With Applications in r</em>. Springer.
+</div>
+<div id="ref-McKinney2010" class="csl-entry">
+McKinney, W. 2010. <span>“Data Structures for Statistical Computing in Python.”</span> In <em>Proceedings of the 9th Python in Science Conference</em>.
+</div>
+<div id="ref-mohri2018foundations" class="csl-entry">
+Mohri, M., A. Rostamizadeh, and A. Talwalkar. 2018. <em>Foundations of Machine Learning</em>. MIT Press.
+</div>
+<div id="ref-montgomery2021" class="csl-entry">
+Montgomery, D. C., E. A. Peck, and G. G. Vining. 2021. <em>Introduction to Linear Regression Analysis</em>. 6th ed. Wiley.
+</div>
+<div id="ref-Pearson1896" class="csl-entry">
+Pearson, K. 1896. <span>“Mathematical Contributions to the Theory of Evolution. III. Regression, Heredity, and Panmixia.”</span> <em>Philosophical Transactions of the Royal Society of London. A</em> 187: 253–318.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introdução-à-ia-e-am.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regressão-linear-na-estatística-e-na-am.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
