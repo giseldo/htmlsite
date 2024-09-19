@@ -14,6 +14,11 @@
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+
+      .p {
+        color: "blue"
+      }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -93,7 +98,7 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
+  <!-- Custom styles for this template -->
   <link href="navbar-static.css" rel="stylesheet">
   </head>
   <body>
@@ -183,6 +188,50 @@
 
 <!-- Page content-->
 <div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Post header-->
+      <header class="mb-4">
+        <!-- Post title-->
+        <h1 class="fw-bolder mb-1">Embedding Models</h1>
+        <!-- Post meta content-->
+        <div class="text-muted fst-italic mb-2">18 de Setembro de 2024 por Giseldo Neo</div>
+        <!-- Post categories-->
+        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Aprendizagem de Máquina</a>
+        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Regressão Linear</a>
+    </header>
+
+        <!-- Post content-->
+        <article>
+          <section class="mb-5">
+    
+    <p class="fs-5 mb-4">Este artigo é inpirado e uma tradução livre do post do <a
+    href="https://ollama.com/blog/embedding-models">Ollama.</a></p>
+
+    <p class="fs-5 mb-4">Modelos de <em>Embedding</em> são modelos treinados para gerar
+    vetores de <em>embeddings</em>.</p>
+
+    <p class="fs-5 mb-4">Esses vetores são números que representam semânticamente o
+    significado de uma determinada porção do texto.</p>
+
+    <p class="fs-5 mb-4">Um vetor (em inglês <em>array</em>) é uma estrutura de dados que
+    armazena uma coleção de elementos, normalmente todos do mesmo tipo, em
+    posições contíguas de memória. Cada elemento em um vetor é acessado por
+    um índice ou posição, que começa em 0 na maioria das linguagens de
+    programação. Vetores são usados para armazenar várias variáveis sob um
+    único nome, o que permite organizar dados de forma eficiente.</p>
+    <p class="fs-5 mb-4">Por exemplo, em uma linguagem como Python, um array pode ser
+    representado como uma lista:</p>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+    <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span></code></pre></div>
+    <p class="fs-5 mb-4">Com essa representação em forma de</p>
+  </section>
+  </article>
+            
+</div>
+</div>
+
     <div class="row">
         <div class="col-lg-8">
             <!-- Post content-->
@@ -199,7 +248,7 @@
                 </header>
                 <!-- Post content-->
                 <section class="mb-5">
-                    <p class="fs-5 mb-4">A Regressão linear é uma técnica estatística que tenta modelar a relação entre duas ou mais variáveis usando uma linha reta. É uma ferramenta poderosa para prever valores de uma variável dependente (a que você está tentando prever) com base nos valores de uma ou mais variáveis independentes (aquelas que você usa para fazer a previsão).</p>
+                    <p class="fs-5 mb-4"class="fs-5 mb-4">A Regressão linear é uma técnica estatística que tenta modelar a relação entre duas ou mais variáveis usando uma linha reta. É uma ferramenta poderosa para prever valores de uma variável dependente (a que você está tentando prever) com base nos valores de uma ou mais variáveis independentes (aquelas que você usa para fazer a previsão).</p>
                     <p class="fs-5 mb-4">Imagine que você quer saber se existe uma relação entre o número de horas que um estudante estuda e a nota que ele tira em um teste. Você pode usar a regressão linear para verificar se existe uma relação linear entre essas duas variáveis e prever a nota do estudante com base no número de horas que ele estuda.</p>    
                     <p class="fs-5 mb-4">O código a seguir cria os dados necessários e apresenta um gráfico de pontos da relação entre as duas variáveis, $x$ a variável dependente e $y$ a variável independente.</p>
                     <p class="fs-5 mb-4">Primeiro vamos instalar as dependências necessárias.</p>
